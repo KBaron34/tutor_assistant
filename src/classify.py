@@ -1,5 +1,3 @@
-import json
-
 PRIORITY_MARKERS = {
     "parent_note": ["мама", "папа", "родит"],
     "recommendation": ["рекоменд", "ввести"],
@@ -8,8 +6,15 @@ PRIORITY_MARKERS = {
 MARKERS = {
     "lesson_report": ["отчёт", "отчет", "№"],
     "observation": [
-        "сон", "спал", "настроен", "вялый", "играл",
-        "отказал", "перегруз", "просып", "ел"
+        "сон",
+        "спал",
+        "настроен",
+        "вялый",
+        "играл",
+        "отказал",
+        "перегруз",
+        "просып",
+        "ел",
     ],
 }
 
@@ -20,7 +25,7 @@ THRESHOLD = 0.15
 def count_markers(text: str, markers: list[str]) -> int:
     """
     Считает, сколько маркеров из списка встретилось в тексте.
-    
+
     :param text: текст
     :param markers: список маркеров
 
@@ -51,10 +56,7 @@ def classify(text: str) -> tuple[str, float]:
             return label, 1.0
 
     # Рассчет скоров
-    scores = {
-        label: count_markers(text, markers)
-        for label, markers in MARKERS.items()
-    }
+    scores = {label: count_markers(text, markers) for label, markers in MARKERS.items()}
     total = sum(scores.values())
 
     if total == 0:
@@ -72,12 +74,3 @@ def classify(text: str) -> tuple[str, float]:
         return UNKNOWN, top1_score
 
     return top1_label, top1_score
-
-
-if __name__ == "__main__":
-    with open("dataset.json", "r", encoding="utf-8") as f:
-        data = json.load(f)
-
-    for rec in data["records"]:
-       top, score = classify(rec["text"])
-       print(f"top: {top}, score: {score}")

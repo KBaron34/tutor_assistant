@@ -1,8 +1,6 @@
-import json
 import re
 
 import dateparser
-
 
 # Паттерны поиска
 DATE_PATTERN = re.compile(

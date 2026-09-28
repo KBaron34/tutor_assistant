@@ -60,3 +60,7 @@ dkms.conf
 # Игнорировать файлы, создаваемые pytest
 .pytest_cache/
 __pycache__/
+
+# Игнорировать файлы с переменными
+.env
+.env.local

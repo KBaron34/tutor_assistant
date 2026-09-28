@@ -1,3 +1,8 @@
+try:
+    from .utils import count_markers, clean_llm_response
+except ImportError:
+    from utils import count_markers, clean_llm_response
+
 PRIORITY_MARKERS = {
     "parent_note": ["мама", "папа", "родит"],
     "recommendation": ["рекоменд", "ввести"],
@@ -20,19 +25,6 @@ MARKERS = {
 
 UNKNOWN = "unknown"
 THRESHOLD = 0.15
-
-
-def count_markers(text: str, markers: list[str]) -> int:
-    """
-    Считает, сколько маркеров из списка встретилось в тексте.
-
-    :param text: текст
-    :param markers: список маркеров
-
-    :return: количество маркеров, которые встретились
-    """
-    text_lower = text.lower()
-    return sum(1 for m in markers if m in text_lower)
 
 
 def classify(text: str) -> tuple[str, float]:

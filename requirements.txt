@@ -1,0 +1,4 @@
+dateparser==1.4.3
+gigachat==0.2.3
+python-dotenv==1.2.3
+pytest==9.1.1

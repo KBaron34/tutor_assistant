@@ -4,8 +4,6 @@ from pathlib import Path
 import pytest
 
 from src.classify import (
-    MARKERS,
-    PRIORITY_MARKERS,
     UNKNOWN,
     classify,
     count_markers,
